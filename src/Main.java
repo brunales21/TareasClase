@@ -3,8 +3,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        dibujarTriangulo(3);
+        //System.out.println(padding("****", "-", 1));
 
-        System.out.println(invertirCifras2(954733));
     }
 
     //1 Funciones (métodos)
@@ -147,22 +148,57 @@ public class Main {
         else return -1;
     }
 
-    public static String invertirCifras(short auxA) {
+    public static int invertirCifras(short auxA) {
         //Me interesa guardarlo en String para usar metodos como charAt (que int, short no tienen).
         String a = auxA + "";
         String b = "";
         for (int i = a.length()-1; i>=0; i--) {
             b += a.charAt(i);
         }
-        return b;
+        return Integer.parseInt(b);
     }
 
-    public static String invertirCifras2(int auxA) {
+    public static int invertirCifras2(int auxA) {
         String a = auxA + "";
         String b = "";
         for (int i = a.length()-1; i>=0; i--) {
             b += a.substring(i).charAt(0);
         }
+        return Integer.parseInt(b);
+    }
+
+    public static boolean isCapicua(short n) {
+        if (n>0 && n<9999 && n == invertirCifras(n)) return true;
+        else return false;
+    }
+
+    public static void dibujarTriangulo(int base) {
+
+        for (int i = 0; i<base; i++) {
+            System.out.println(padding(stringOf("*", i) ,"-", base));
+        }
+    }
+
+
+
+    public static String padding(String s, String c, int lenght) {
+        String b = "";
+
+        for(int i = 0; i<lenght; i++) {
+            b+=c;
+        }
+        b+=s;
+        for(int i = 0; i<lenght; i++) {
+            b+=c;
+        }
         return b;
+    }
+
+    public static String stringOf(String c, int len) {
+        String a = c;
+        for (int i = 0; i<len; i++) {
+            c+=a;
+        }
+        return c;
     }
 }
